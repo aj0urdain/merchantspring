@@ -3,8 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import FlagIcon from "./components/flagIcon";
 
-import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
+import Controls from "./components/widget/controls";
 
 const AppWrapper = styled.div`
   height: 100vh;
@@ -546,21 +546,17 @@ const App = () => {
                     ))}
               </tbody>
             </Table>
-            <ControlsContainer>
-              <Pagination
-                current={currentPage}
-                onChange={handlePageChange}
-                total={totalPages * limit}
-                pageSize={limit}
-                showTitle={false}
-                showLessItems={true}
-                prevIcon={"<"}
-                nextIcon={">"}
-                jumpPrevIcon={"<<"}
-                jumpNextIcon={">>"}
-                disabled={loading}
-              />
-            </ControlsContainer>
+
+            <Controls
+              {...{
+                currentPage,
+                handlePageChange: (current: number, pageSize?: number) =>
+                  handlePageChange(current, pageSize || limit),
+                totalPages,
+                limit,
+                loading,
+              }}
+            />
           </WidgetWrapper>
         )}
       </Stage>

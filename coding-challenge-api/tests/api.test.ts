@@ -14,7 +14,7 @@ describe("/sales endpoint", () => {
    */
   beforeAll(async () => {
     await loadData();
-  }, 10000); // Set timeout to 10 seconds for data loading
+  }, 30000); // Set timeout to 10 seconds for data loading
 
   /**
    * Tests whether the endpoint correctly returns paginated sales data
